@@ -1,0 +1,324 @@
+/* ===================================
+   Netflix Inspired Styles
+   =================================== */
+
+/* Global Variables */
+:root {
+  --netflix-black: #141414;
+  --netflix-red: #E50914;
+  --netflix-light-gray: #221f1f;
+  --netflix-text: #ffffff;
+  --netflix-subtext: #808080;
+  --transition: all 0.3s ease-in-out;
+}
+
+/* Light Mode Variables */
+[data-theme="light"] {
+  --netflix-black: #ffffff;
+  --netflix-red: #E50914;
+  --netflix-light-gray: #f5f5f5;
+  --netflix-text: #141414;
+  --netflix-subtext: #666666;
+}
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, var(--netflix-black) 0%, var(--netflix-light-gray) 100%);
+  color: var(--netflix-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ===================================
+   Main Content
+   =================================== */
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ===================================
+   Headings
+   =================================== */
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  padding-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--netflix-red);
+  animation: fadeInDown 0.8s ease-out;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* ===================================
+   Profiles Section
+   =================================== */
+section[aria-label="Perfis disponíveis"] {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 40px;
+  list-style: none;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* ===================================
+   Profile Links & Cards
+   =================================== */
+a.profiles {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+figure img {
+  width: 140px;
+  height: 140px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1.6px solid transparent;
+  transition: var(--transition);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+figcaption {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--netflix-text);
+  text-align: center;
+  transition: var(--transition);
+  letter-spacing: 0.5px;
+}
+
+/* ===================================
+   Hover & Active States
+   =================================== */
+
+a.profiles:hover figure img {
+  border-color: var(--netflix-red);
+  transform: scale(1.08);
+}
+
+a.profiles:hover figcaption {
+  font-weight: 700;
+  transform: translateY(-5px);
+}
+
+a.profiles:focus {
+  outline: none;
+}
+
+a.profiles:focus-visible figure img {
+  border-color: var(--netflix-red);
+}
+
+/* ===================================
+   Theme Toggle Button
+   =================================== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: var(--transition);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle:focus {
+  outline-offset: 2px;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for profiles */
+a.profiles {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+a.profiles:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+a.profiles:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+a.profiles:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+/* Para tablets (até 768px) */
+@media (max-width: 768px) {
+  h1 {
+    /* Reduz tamanho do título para tablets */
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+
+  .profiles {
+    /* Reduz espaçamento entre perfis */
+    gap: 30px;
+    /* Colunas menores para tablets */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  figure img {
+    /* Reduz tamanho das imagens para tablets */
+    width: 120px;
+    height: 120px;
+  }
+
+  figcaption {
+    /* Reduz tamanho da fonte da legenda */
+    font-size: 0.95rem;
+  }
+
+  main {
+    /* Reduz padding para tablets */
+    padding: 30px 15px;
+    margin: 0 16px;
+  }
+}
+
+/* Para smartphones (até 480px) */
+@media (max-width: 480px) {
+  h1 {
+    /* Reduz significativamente o título para smartphones */
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+  }
+
+  .profiles {
+    /* Reduz ainda mais o espaçamento para smartphones */
+    gap: 20px;
+    /* Colunas ainda menores para smartphones */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  figure img {
+    /* Reduz bastante o tamanho das imagens para smartphones */
+    width: 100px;
+    height: 100px;
+  }
+
+  figcaption {
+    /* Reduz bastante a fonte para smartphones */
+    font-size: 0.85rem;
+  }
+
+  main {
+    /* Padding mínimo para smartphones */
+    padding: 20px 10px;
+    margin: 0 8px;
+  }
+}
+
+/* ===================================
+   Accessibility
+   =================================== */
+/* Para usuários que preferem menos animação */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    /* Remove todas as animações para respeitar preferências */
+    animation: none !important;
+    /* Remove todas as transições para acessibilidade */
+    transition: none !important;
+  }
+}
+
+/* Para modo claro do navegador/sistema */
+@media (prefers-color-scheme: light) {
+  body {
+    /* Muda gradiente para tons claros */
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    /* Muda cor do texto para escuro */
+    color: #141414;
+  }
+
+  h1,
+  figcaption {
+    /* Muda cor do texto para escuro em modo claro */
+    color: #141414;
+  }
+
+  figure img {
+    /* Reduz intensidade da sombra em modo claro */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
